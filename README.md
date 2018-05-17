@@ -53,6 +53,10 @@ For interaction from html file add the code below,
 
         @Override
         public void onPageFinished(WebView view, String url) {
+        //request = { amount: '1000', intent: 'sale' }
+        //"intent" parameter has two options 'sale' or 'authorization'
+        //'sale' is used for immediate payment and 'authorization' is for deffered payment(capture interface call needed from backend to confirm transaction)
+        
             String paymentRequest = "{paymentRequest:" + request + "}";
             mWebView.loadUrl("javascript:callReconfigure(" + paymentRequest + " )");
             mWebView.loadUrl("javascript:clickPayButton()");
