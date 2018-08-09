@@ -85,51 +85,7 @@ Add the bKash button/image(must have id=bKash_button) inside the body Tag,
 # Use bKash Checkout functions 
 
 ```
-bKash.init({
-
-                    paymentMode: 'checkout',
-
-                    paymentRequest:  { amount: '1000', intent: 'sale' },
-
-                    paymentConfig: {
-                        createCheckoutURL: "https://merchantserver.sandbox.bka.sh/api/checkout/payment/create",
-                        executeCheckoutURL: "https://merchantserver.sandbox.bka.sh/api/checkout/payment/execute",
-                    },
-
-                    createRequest: function (url, request) {
-
-                        console.log('=> createRequest (url,request) :: ');
-                        console.log(url);
-                        console.log(JSON.stringify(request));
-                        bKash.create(url, request)
-                            .then(result => {
-                                //createRequest call successful
-                                //no action needed
-                            }).catch(error => {
-                                //createRequest call failed
-                                console.error('=> createRequest :: inside catch');
-                                console.error('errorCode : ' + error.errorCode + '; errorMessage : ' + error.errorMessage);
-                                //handle error here
-
-                            });
-                    },
-                    executeRequestOnAuthorization: function (url) {
-
-                        bKash.execute(url)
-                            .then(result => {
-                                // executeRequestOnAuthorization executed successfully
-                                // redirect to your(merchant) success page
-                                window.location.href = "file:///android_asset/www/checkoutSuccess.html";
-
-                            }).catch(error => {
-                                //executeRequestOnAuthorization call failed
-                                console.error('=> executeRequestOnAuthorization :: inside catch');
-                                console.error('errorCode : ' + error.errorCode + '; errorMessage : ' + error.errorMessage);
-                                //handle error here
-
-                            });
-                    }
-                });
+Check the code for reference
 ```
 
 Call the bKash.reconfigure(paymentRequest) function for passing the 'paymentRequest' parameter from your WebviewActivity as shown in above Webview Integration section.
