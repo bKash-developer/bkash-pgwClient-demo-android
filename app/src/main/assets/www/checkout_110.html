@@ -7,33 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrom=1">
 
     <script src="file:///android_asset/www/js/jquery-1.8.3.min.js"></script>
-    <script src="https://scripts.sandbox.bka.sh/versions/1.2.0-beta/checkout/bKash-checkout-sandbox.js"></script>
+    <script src="https://scripts.sandbox.bka.sh/versions/1.1.0-beta/checkout/bKash-checkout-sandbox.js"></script>
 </head>
 <body>
-<p>Verion 1.2.0-beta</p>
-<button id="bKash_button"  style="display:none"; >Pay With bKash</button>
+<p>Verion 1.1.0-beta</p>
+<button id="bKash_button" style="display:none";>Pay With bKash</button>
 
 <script type="text/javascript">
 
 $(document).ready(function(){
-        $.ajax({
-            url: "http://bkash.wordhulhasan.com/1.2.0-beta/token.php",
-            type: 'POST',
-            contentType: 'application/json',
-            success: function (data) {
-                console.log('got data from token  ..');
-				console.log(JSON.stringify(data));
-				//document.getElementById("demo").innerHTML =JSON.stringify(data)
-            },
-			error: function(){
-						console.log('error');
-
-            }
-        });
 
         var paymentConfig={
-            createCheckoutURL:"http://bkash.wordhulhasan.com/1.2.0-beta/createpayment.php",
-            executeCheckoutURL:"http://bkash.wordhulhasan.com/1.2.0-beta/executepayment.php",
+            createCheckoutURL:"https://merchantserver.sandbox.bka.sh/api/checkout/v1.1.0-beta/payment/create",
+            executeCheckoutURL:"https://merchantserver.sandbox.bka.sh/api/checkout/v1.1.0-beta/payment/execute",
         };
 
 
@@ -47,21 +33,20 @@ $(document).ready(function(){
             createRequest: function(request){
                 console.log('=> createRequest (request) :: ');
                 console.log(request);
-                //document.getElementById("demo1").innerHTML =JSON.stringify(request);
+
                 $.ajax({
-                    url: paymentConfig.createCheckoutURL+"?amount="+paymentRequest.amount,
-                    type:'GET',
+                    url: paymentConfig.createCheckoutURL,
+                    type:'POST',
                     contentType: 'application/json',
+                    data: JSON.stringify(request),
                     success: function(data) {
                         console.log('got data from create  ..');
                         console.log('data ::=>');
                         console.log(JSON.stringify(data));
-                        //document.getElementById("demo2").innerHTML = data;
-                        var obj = JSON.parse(data);
-                        //document.getElementById("demo3").innerHTML =obj.paymentID;
-                        if(data && obj.paymentID != null){
-                            paymentID = obj.paymentID;
-                            bKash.create().onSuccess(obj);
+
+                        if(data && data.paymentID != null){
+                            paymentID = data.paymentID;
+                            bKash.create().onSuccess(data);
                         }
                         else {
 							console.log('error');
@@ -78,19 +63,21 @@ $(document).ready(function(){
             executeRequestOnAuthorization: function(){
                 console.log('=> executeRequestOnAuthorization');
                 $.ajax({
-                    url: paymentConfig.executeCheckoutURL+"?paymentID="+paymentID,
-                    type: 'GET',
+                    url: paymentConfig.executeCheckoutURL,
+                    type: 'POST',
                     contentType:'application/json',
+                    data: JSON.stringify({ "paymentID": paymentID }),
                     success: function(data){
                         console.log('got data from execute  ..');
                         console.log('data ::=>');
                         console.log(JSON.stringify(data));
                         //document.getElementById("demo4").innerHTML = data;
-                        data = JSON.parse(data);
                         if(data && data.paymentID != null){
                             alert('[SUCCESS] data : ' + JSON.stringify(data));var value1=data.paymentID;
+                            var value1=data.paymentID;
                             var value2=data.trxID;
-                            var queryString = "?Payment ID = " + value1 + "&Transaction ID = " + value2;
+                            var value3=data.amount;
+                            var queryString = "?Payment ID = " + value1 + "&Transaction ID = " + value2+ "&Amount = " + value3;
                             window.location.href = "file:///android_asset/www/checkoutSuccess.html"+ queryString;
                         }
                         else {

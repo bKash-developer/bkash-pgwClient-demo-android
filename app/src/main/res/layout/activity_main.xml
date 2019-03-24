@@ -40,21 +40,6 @@
         app:layout_constraintHorizontal_bias="0.503" />
 
 
-    <EditText
-        android:id="@+id/checkout_wallet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="017********"
-        android:inputType="textPersonName"
-        android:layout_marginTop="15dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.503" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -68,31 +53,46 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.241" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Wallet"
-        android:layout_marginTop="19dp"
-        app:layout_constraintTop_toBottomOf="@+id/checkout_amount"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="145dp"
+        android:layout_height="96dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="112dp"
+        android:layout_marginRight="8dp"
+        android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.234" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkout_amount">
+
+        <RadioButton
+            android:id="@+id/one_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.1.0-Beta"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/one_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.2.0-Beta"
+            android:textSize="14sp" />
+
+    </RadioGroup>
 
     <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="252dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="25dp"
         android:orientation="vertical"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkout_wallet">
+        app:layout_constraintTop_toBottomOf="@+id/checkout_amount">
 
         <RadioButton
             android:id="@+id/intent_sale"

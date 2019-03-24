@@ -14,10 +14,19 @@
 <body style="">
 <div class="container">
     <h3>Payment done Successfully</h3>
-    <a href="#" onclick="switchToMain();return false;">Go Home</a>
+    <p id="demo"></p>
+
 </div>
 
 <script type="text/javascript">
+    var queryString = decodeURIComponent(window.location.search);
+    queryString = queryString.substring(1);
+    var queries = queryString.split("&");
+    for (var i = 0; i < queries.length; i++)
+    {
+        document.write("<p>  "+queries[i]+"</p>" + "<br>");
+
+    }
     function switchToMain(){
         AndroidNative.switchActivity();
     }

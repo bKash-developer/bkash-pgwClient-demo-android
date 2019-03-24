@@ -13,12 +13,16 @@ import android.widget.Toast;
 
 import com.bkash.rnd.pgwwebview.R;
 import com.bkash.rnd.pgwwebview.model.Checkout;
+//import com.bkash.rnd.pgwwebview.model.Version;
+
+import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonCheckOut;
-    private EditText amount, wallet;
+    private EditText amount;
     private RadioButton sale, auth;
+    private RadioButton version1_1, version1_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +32,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         amount = (EditText) findViewById(R.id.checkout_amount);
-        wallet = (EditText) findViewById(R.id.checkout_wallet);
         sale = (RadioButton) findViewById(R.id.intent_sale);
         auth = (RadioButton) findViewById(R.id.intent_auth);
+        version1_1 =(RadioButton) findViewById(R.id.one_one);
+        version1_2 = (RadioButton) findViewById(R.id.one_two);
 
         sale.setChecked(true);
+        version1_1.setChecked(true);
 
         buttonCheckOut = (Button) findViewById(R.id.buttonUrlCheckout);
 
         buttonCheckOut.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!amount.getText().toString().isEmpty() || !wallet.getText().toString().isEmpty()) {
+                if (!amount.getText().toString().isEmpty()) {
                     Checkout checkout = new Checkout();
+                    //Version version = new Version();
                     checkout.setAmount(amount.getText().toString());
-                    checkout.setWallet(wallet.getText().toString());
+                    if(version1_1.isChecked()==true){
+                        checkout.setVersion("one");
+                    }
+                    else{
+                        checkout.setVersion("two");
+                    }
                     if (sale.isChecked() == true) {
                         checkout.setIntent("sale");
                     } else {
