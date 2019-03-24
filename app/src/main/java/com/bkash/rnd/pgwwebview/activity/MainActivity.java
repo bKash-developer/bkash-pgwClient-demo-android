@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.bkash.rnd.pgwwebview.R;
 import com.bkash.rnd.pgwwebview.model.Checkout;
-//import com.bkash.rnd.pgwwebview.model.Version;
+
 
 import java.io.Serializable;
 
@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!amount.getText().toString().isEmpty()) {
                     Checkout checkout = new Checkout();
-                    //Version version = new Version();
                     checkout.setAmount(amount.getText().toString());
                     if(version1_1.isChecked()==true){
                         checkout.setVersion("one");

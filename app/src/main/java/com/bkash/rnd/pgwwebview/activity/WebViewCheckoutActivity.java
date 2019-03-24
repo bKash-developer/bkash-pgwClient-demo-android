@@ -69,7 +69,7 @@ public class WebViewCheckoutActivity extends AppCompatActivity {
             mWebView.loadUrl("file:///android_asset/www/checkout_110.html");
         }
         else {
-            mWebView.loadUrl("file:///android_asset/www/checkoutBackend.html");
+            mWebView.loadUrl("file:///android_asset/www/checkout_120.html");
         }
 
         mWebView.setWebViewClient(new WebViewCheckoutActivity.CheckoutWebViewClient());
