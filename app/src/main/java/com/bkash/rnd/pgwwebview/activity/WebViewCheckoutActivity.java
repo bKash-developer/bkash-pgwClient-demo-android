@@ -65,7 +65,12 @@ public class WebViewCheckoutActivity extends AppCompatActivity {
            */
         mWebView.addJavascriptInterface(new JavaScriptInterface(this), "AndroidNative");
 
-        mWebView.loadUrl("file:///android_asset/www/checkout.html");
+        if (checkout.getVersion().equals("one")){
+            mWebView.loadUrl("file:///android_asset/www/checkout_110.html");
+        }
+        else {
+            mWebView.loadUrl("file:///android_asset/www/checkout_120.html");
+        }
 
         mWebView.setWebViewClient(new WebViewCheckoutActivity.CheckoutWebViewClient());
     }
