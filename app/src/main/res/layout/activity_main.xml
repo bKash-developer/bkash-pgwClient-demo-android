@@ -54,34 +54,6 @@
         app:layout_constraintHorizontal_bias="0.241" />
 
     <RadioGroup
-        android:id="@+id/radioGroup2"
-        android:layout_width="145dp"
-        android:layout_height="96dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginRight="8dp"
-        android:orientation="vertical"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkout_amount">
-
-        <RadioButton
-            android:id="@+id/one_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1.1.0-Beta"
-            android:textSize="14sp" />
-
-        <RadioButton
-            android:id="@+id/one_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1.2.0-Beta"
-            android:textSize="14sp" />
-
-    </RadioGroup>
-
-    <RadioGroup
         android:id="@+id/radioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
