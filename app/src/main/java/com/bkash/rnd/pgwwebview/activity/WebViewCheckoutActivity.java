@@ -50,8 +50,8 @@ public class WebViewCheckoutActivity extends AppCompatActivity {
 
 
         /*
-        * Below part is for enabling webview settings for using javascript and accessing html files and other assets
-           */
+         * Below part is for enabling webview settings for using javascript and accessing html files and other assets
+         */
         mWebView.setClickable(true);
         mWebView.getSettings().setDomStorageEnabled(true);
         mWebView.getSettings().setAppCacheEnabled(false);
@@ -61,16 +61,11 @@ public class WebViewCheckoutActivity extends AppCompatActivity {
         mWebView.getSettings().setAllowUniversalAccessFromFileURLs(true);
 
         /*
-        * To control any kind of interaction from html file
-           */
+         * To control any kind of interaction from html file
+         */
         mWebView.addJavascriptInterface(new JavaScriptInterface(this), "AndroidNative");
 
-        if (checkout.getVersion().equals("one")){
-            mWebView.loadUrl("file:///android_asset/www/checkout_110.html");
-        }
-        else {
-            mWebView.loadUrl("file:///android_asset/www/checkout_120.html");
-        }
+        mWebView.loadUrl("file:///android_asset/www/checkout_120.html");
 
         mWebView.setWebViewClient(new WebViewCheckoutActivity.CheckoutWebViewClient());
     }

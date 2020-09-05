@@ -73,7 +73,7 @@ Add below lines inside HTML head Tag,
     <meta name="viewport" content="width=device-width" ,="" initial-scale="1.0/">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrom=1">
 
-    <script src="PATH/jquery-1.8.3.min.js"></script>
+    <script src="PATH/jquery-3.5.1.min.js"></script>
     <script src="http://scripts.sandbox.bka.sh/bKash-checkout-v2.js"></script>
 ```    
 Add the bKash button/image(must have id=bKash_button) inside the body Tag,

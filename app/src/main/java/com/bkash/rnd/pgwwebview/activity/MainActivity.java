@@ -19,10 +19,8 @@ import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonCheckOut;
     private EditText amount;
-    private RadioButton sale, auth;
-    private RadioButton version1_1, version1_2;
+    private RadioButton sale;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +31,10 @@ public class MainActivity extends AppCompatActivity {
 
         amount = (EditText) findViewById(R.id.checkout_amount);
         sale = (RadioButton) findViewById(R.id.intent_sale);
-        auth = (RadioButton) findViewById(R.id.intent_auth);
-        version1_1 =(RadioButton) findViewById(R.id.one_one);
-        version1_2 = (RadioButton) findViewById(R.id.one_two);
 
         sale.setChecked(true);
-        version1_1.setChecked(true);
 
-        buttonCheckOut = (Button) findViewById(R.id.buttonUrlCheckout);
+        Button buttonCheckOut = (Button) findViewById(R.id.buttonUrlCheckout);
 
         buttonCheckOut.setOnClickListener(new OnClickListener() {
             @Override
@@ -48,19 +42,18 @@ public class MainActivity extends AppCompatActivity {
                 if (!amount.getText().toString().isEmpty()) {
                     Checkout checkout = new Checkout();
                     checkout.setAmount(amount.getText().toString());
-                    if(version1_1.isChecked()==true){
-                        checkout.setVersion("one");
-                    }
-                    else{
-                        checkout.setVersion("two");
-                    }
-                    if (sale.isChecked() == true) {
+
+                    checkout.setVersion("two");
+
+                    if (sale.isChecked()) {
                         checkout.setIntent("sale");
                     } else {
                         checkout.setIntent("authorization");
                     }
+
                     Intent intent = new Intent(context, WebViewCheckoutActivity.class);
                     intent.putExtra("values", checkout);
+
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Please enter the field values", Toast.LENGTH_SHORT).show();
